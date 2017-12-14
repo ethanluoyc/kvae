@@ -402,7 +402,8 @@ class KalmanVariationalAutoencoder(object):
             log_px = []
             log_qa = []
             time_epoch_start = time.time()
-            for i in range(num_batches):
+            from tqdm import trange
+            for i in trange(num_batches):
                 slc = slice(i * self.config.batch_size, (i + 1) * self.config.batch_size)
                 feed_dict = {self.x: self.train_data.images[slc],
                              self.kf.u: self.train_data.controls[slc],
